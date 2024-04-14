@@ -2,7 +2,7 @@ import abc
 from collections import OrderedDict
 import io
 
-from ..backup import *
+from pmca.backup import *
 from ..util import *
 
 class BaseBackupProp(abc.ABC):
