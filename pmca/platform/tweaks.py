@@ -123,18 +123,14 @@ class LanguageTweak(BackupTweak):
  def _getLangs(self, region):
   return bytearray([self.BACKUP_LANG_ENABLED if l else self.BACKUP_LANG_DISABLED for l in self._backup.getDefaultLanguages(region)])
 
-def offValue(self):
+ def offValue(self):
   region = self._backup.getRegion()
   return self._getLangs(region[region.index('_')+1:])
 
-def onValue(self):
-  region = self._backup.getRegion()
-  if region[region.index('_')+1:] == 'J1':
-    return self._getLangs('JP-MOD')
-  else:
-    return self._getLangs('ALLLANG')
+ def onValue(self):
+  return self._getLangs('ALLLANG')
 
-def strValue(self):
+ def strValue(self):
   val = bytearray(self.read())
   return '%d / %d languages activated' % (sum(1 if l == self.BACKUP_LANG_ENABLED else 0 for l in val), len(val))
 
